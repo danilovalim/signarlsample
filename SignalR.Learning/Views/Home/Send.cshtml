@@ -1,0 +1,18 @@
+﻿
+<h2>Send</h2>
+
+
+<input type="text" id="msg"/>
+<button id="btnSend" onclick="Send()">Enviar</button>
+
+
+<script>
+    function Send() {
+        $.ajax({
+            url: '/home/SendMessage/?message=' + $('#msg').val()
+        }).done(function (response) {
+            console.log(response)
+        })
+    }
+
+</script>
