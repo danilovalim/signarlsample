@@ -1,0 +1,25 @@
+﻿
+<h2>Chat</h2>
+
+<input type="text" placeholder="Mensagem" id="mensagem"/>
+<button id="btnEnviar">Enviar</button>
+<ul class="lista">
+
+</ul>
+
+<script>
+        $(document).ready(function () {
+            var chat = $.connection.chatHub;
+            $.connection.hub.start();
+
+            chat.client.writeMessage = function (msg) {
+                $('.lista').append('<li>' + msg + '</li>')
+            }
+
+            $('#btnEnviar').click(function () {
+                chat.server.broadcastMessage($('#mensagem').val());
+            })
+
+            console.log(chat)
+        })
+</script>
